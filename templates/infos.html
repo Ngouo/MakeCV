@@ -1,0 +1,63 @@
+{% extends "base.html" %}{% load static %} {% block content %}
+<div class="cover2">
+  <div class="container">
+    <div class="row mt-5 pt-3">
+      <div class="col-md-10 offset-md-2">
+        <div class="card my-2 shadow">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-4">
+                <img
+                  class="img-thumbnail"
+                  src="{% static './GilbertDev-.png'%}"
+                  alt="profile-img"
+                />
+              </div>
+              <div class="col-md-8">
+                <h4>Infos générales</h4>
+                <hr />
+                <p>
+                  Bonjour, moi c'est <strong>GilDev</strong> et je suis un jeune
+                  camerounais passionné du développement web. Actuellement à ma
+                  troisième année d'étude, je me spécialise dans les
+                  technologies de développement web telles que HTML/CSS,
+                  JavaScript, Python et les frameworks tels que VueJs et surtout
+                  Django. Je suis motivé pour apprendre et pour créer des
+                  applications web innovantes et efficaces. Je suis convaincu
+                  que mes compétences en développement web me permettront de
+                  contribuer à la création de solutions numériques qui répondent
+                  aux besoins des utilisateurs. Je suis impatient de poursuivre
+                  mon apprentissage et de mettre mes compétences en pratique
+                  dans un environnement professionnel. <br />Vous pouvez me
+                  contacter et consulter mon Portfolio via les liens ci-dessous
+                  :
+                </p>
+                <hr />
+                <center>
+                  <a href="https://www.linkedin.com/in/ngouo-gilbert-759059243/"
+                    ><i
+                      class="fa-brands fa-linkedin"
+                      style="font-size: 40px"
+                    ></i
+                  ></a>
+                  <a href="https://github.com/Ngouo"
+                    ><i
+                      class="fa-brands fa-github"
+                      style="font-size: 40px; color: black"
+                    ></i
+                  ></a>
+                  <a href="https://ngouogilbert-portfolio.netlify.app/"
+                    ><i class="fa-solid fa-user-tie" style="font-size: 40px"></i
+                  ></a>
+                </center>
+                <hr />
+              </div>
+            </div>
+            <br />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

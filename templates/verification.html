@@ -1,0 +1,46 @@
+{% extends "base.html" %}{% block content %}
+<div class="alert alert-primary" role="alert" style="margin-top: 10px">
+  Voici vos informations que vous avez transmis ! Cliquez sur le bouton en bas
+  pour effectuer votre téléchargement.
+</div>
+<h4>Informations personnelles :</h4>
+<h5>{{noms}}</h5>
+<h5>{{email}}</h5>
+<h5>{{adresse}}</h5>
+<h5>{{contact}}</h5>
+
+<hr />
+
+<h4>Objectif :</h4>
+<h5>{{objectif}}</h5>
+<hr />
+
+<h4>Competences techniques :</h4>
+<h5>{{tech_skills}}</h5>
+<hr />
+
+<h4>Expérience :</h4>
+<h5>{{exp_pro}}</h5>
+<hr />
+
+<h4>Projets :</h4>
+<h5>{{projets}}</h5>
+<hr />
+
+<h4>Compétences interpersonnelles :</h4>
+<h5>{{soft_skills}}</h5>
+<hr />
+
+<h4>Education :</h4>
+<h5>{{education}}</h5>
+<hr />
+
+<h4>Langues :</h4>
+<h5>{{langue}}</h5>
+<hr />
+<h5 class="tect-white">MakeCV generator {%now 'Y-m-d'%}</h5>
+
+<a class="btn btn-warning" href="download" style="margin-bottom: 20px"
+  >Aller au Téléchargement</a
+>
+{% endblock content %}
