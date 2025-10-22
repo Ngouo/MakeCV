@@ -1,2 +1,9 @@
+#!/bin/bash
+
 pip install -r requirements.txt
-python3.9 manage.py collectstatic
+
+# Configuration PyMySQL
+echo "import pymysql\npymysql.install_as_MySQLdb()" >> MakeCV/__init__.py
+
+# Collecte des fichiers statiques
+python manage.py collectstatic --noinput
