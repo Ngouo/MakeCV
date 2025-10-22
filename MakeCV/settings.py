@@ -37,6 +37,7 @@ ALLOWED_HOSTS = ['.vercel.app', 'localhost']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
+    'whitenoise.runserver_nostatic'
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
