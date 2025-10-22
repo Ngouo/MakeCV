@@ -1,0 +1,25 @@
+{% extends "base.html" %} {% block title %}Deconnexion{% endblock title %}
+{% block content %} 
+
+
+
+
+<div class="cover">
+  <div class="container cover">
+    <div class="row mt-5 pt-3">
+      <div class="col-md-5 offset-md-3">
+        <div class="card my-3 shadow">
+          <div class="card-body">
+            <h4>Deconnexion</h4>
+            <hr />
+            <p>Vous etes déconnecté
+            Connectez-vous ici : </p> 
+             <a class="btn btn-success" href="{%url 'auth'%}">Connexion</a>          
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

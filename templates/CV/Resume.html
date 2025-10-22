@@ -1,0 +1,83 @@
+{%extends "base.html"%}{%block title%}Accueil{%endblock title%}{%block content%}
+<br />
+
+<div>
+  <p class="text-center" style="font-size: 30px; font-weight: bold">
+    Bienvenues sur votre espace {{user.username}}
+  </p>
+  <hr />
+
+  {% if messages %}
+  <div class="container mt-3">
+    {% for message in messages %}
+      <div class="alert alert-success" role="alert">
+        {{ message }}
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+    
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card my-3 shadow" class="cv" style="height: 25rem; overflow-y: auto;">
+              <div class="card-body">
+                <h4>Mes CVs</h4>
+                <hr />
+               {% for cv in cvs %}
+                {% if cv.id == first_cv.id %}
+                  <div class="d-flex justify-content-between alert alert-success">
+                    <p class=""><strong>{{cv.noms}} </strong></p> 
+                    <div>
+                      <a href="{% url 'generer_cv' cv.id %}" class="btn btn-primary" title="Télécharger">
+                        <i class="fa fa-download" aria-hidden="true" width="2" height="2"></i>
+                      </a>
+                      <a href="{% url 'delete_cv' cv.id %}" class="btn btn-danger" title="Supprimer">
+                        <i class="fa fa-remove" aria-hidden="true" width="2" height="2"></i>
+                      </a>
+                    </div>
+                  </div>
+                 
+                 <hr>
+                 {% else %}                   
+                      <div class="d-flex justify-content-between">
+                        <p class=""><strong> {{cv.noms}}</strong></p>
+                          <div>
+                            <a href="{% url 'generer_cv' cv.id %}" class="btn btn-primary" title="Télécharger">
+                              <i class="fa fa-download" aria-hidden="true" width="2" height="2"></i>
+                            </a>
+                            <a href="{% url 'delete_cv' cv.id %}" class="btn btn-danger" title="Supprimer">
+                              <i class="fa fa-remove" aria-hidden="true" width="2" height="2"></i>
+                            </a>
+                          </div>
+                      </div>
+                 
+                 <hr>
+                 {% endif %}
+                 {% empty %}
+                     <p>  Aucun CV généré pour le moment. 
+                 </p>
+               {% endfor %}
+              </div>
+            </div>
+          </div>
+        
+      
+       
+          <div class="col-md-6">         
+              <center>
+                  <a
+                  id="bouton"
+                    class="btn btn-primary mt-5 mb-3"
+                    style="width: 280px; height: 50px; padding-top: 10px; font-size: 20px"
+                    href="form"
+                    >
+                    <i class="fa fa-add" aria-hidden="true" width="2" height="2"></i>
+                    Génerer un nouveau CV</a
+                  >
+            </center>
+          </div> 
+        </div>
+      </div>
+{% endblock content %}

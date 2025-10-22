@@ -1,0 +1,34 @@
+{%extends "base.html"%} {%block content %} {% load crispy_forms_tags %}
+<div class="alert alert-primary" role="alert" style="margin-top: 5px">
+  Remplissez le formulaire ci-dessous pour générer votre CV. Veuillez bien
+  vérifier vos informations après avoir terminé
+</div>
+
+<div class="cover">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 offset-md-0">
+        <div class="card my-3 shadow">
+          <div class="card-body" >    
+             <h4>Formulaire de remplissage</h4>
+            <hr />     
+            <div class="cvform" style="max-height: 370px; overflow-y: auto;">
+            <form method="post">
+                 {% csrf_token %}
+                 {{form | crispy}}
+                 <input
+                class="btn btn-primary"
+                type="submit"
+                value="Valider"
+              />
+                <a class="btn btn-danger" href="Accueil">Annuler</a>
+            </form>
+
+           </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %} {%block title%}Formulaire{% endblock title %}

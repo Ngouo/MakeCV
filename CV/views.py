@@ -1,84 +1,81 @@
 from django.shortcuts import render, redirect
-from django.http.response import HttpResponse
 from .models import Profile
+from .form import ProfileForm
+import os
+from weasyprint import HTML  # type: ignore
+from django.http import FileResponse, HttpResponse
 from django.template.loader import get_template
-import io
-import pdfkit
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+
+
 
 # Create your views here.
-
+@login_required(login_url='login')
 def accueil(request):
-  return render(request, 'Resume.html')
+  cvs = Profile.objects.filter(auteur=request.user).order_by('-id')
+  first_cv = cvs.first()
+  return render(request, 'CV/Resume.html', {'cvs':cvs, "first_cv": first_cv})
 
+
+@login_required(login_url='login')
 def form(request):
   if request.method == 'POST':
-    noms = request.POST.get("noms")
-    email = request.POST.get("email")
-    adresse = request.POST.get("adresse")
-    contact = request.POST.get("contact")
-    objectif = request.POST.get("objectif")
-    tech_skills = request.POST.get("tech_skills")
-    exp_pro = request.POST.get("exp_pro")
-    projets = request.POST.get("projets")
-    soft_skills = request.POST.get("soft_skills")
-    education = request.POST.get("education")
-    langue = request.POST.get("langue")
-    donnees = Profile(noms=noms, email=email, adresse=adresse, contact=contact, tech_skills=tech_skills, soft_skills=soft_skills, langue=langue, projets=projets, education=education, exp_pro=exp_pro, objectif=objectif)
-    donnees.save()
-    return redirect("verification")
-  return render (request, 'form.html')
+    form = ProfileForm(request.POST or None)
+    if form.is_valid():
+       # Stocker les données dans la session
+        request.session['profile_data'] = form.cleaned_data
+        return redirect('verification')
+    
+    else:
+      print('erreur : ', ProfileForm.errors)
+  else:
+    form = ProfileForm()
+  return render (request, 'CV/form.html', {'form':form})
 
-
+@login_required(login_url='login')
 def verification(request):
-  profiles = Profile.objects.all()[:1]
-  for profile in profiles:
-    noms = profile.noms
-    contact = profile.contact
-    email = profile.email
-    objectif = profile.objectif
-    tech_skills = profile.tech_skills
-    soft_skills = profile.soft_skills
-    education = profile.education
-    adresse = profile.adresse
-    exp_pro = profile.exp_pro
-    langue = profile.langue
-    projets = profile.projets
-  return render(request, 'verification.html',{'noms':noms, 'email':email, 'contact':contact,'exp_pro':exp_pro, "adresse":adresse, 'tech_skills':tech_skills, 'soft_skills':soft_skills, 'objectif':objectif, 'education':education, 'projets':projets, 'langue':langue})
+    profile_data = request.session.get('profile_data')
+    if not profile_data:
+        return redirect('form')
+    
+    if request.method == 'POST':
+        # Ici tu peux enregistrer les données ou continuer le workflow
+        Profile.objects.create(auteur=request.user, **profile_data)
+        del request.session['profile_data']
+        
+        messages.success(request, "Ton CV a été généré et enregistré avec succès !")
+        return redirect('Accueil')
+    return render(request, 'CV/verification.html', {'profile_data': profile_data})
 
 
-def generate(request, id):
-  profile = Profile.objects.get(pk=id)
-  noms = profile.noms
-  contact = profile.contact
-  email = profile.email
-  objectif = profile.objectif                         #fonction pour generer un pdf à partir d'un template et le rendre téléchargeable
-  tech_skills = profile.tech_skills
-  soft_skills = profile.soft_skills
-  education = profile.education
-  adresse = profile.adresse
-  exp_pro = profile.exp_pro
-  langue = profile.langue
-  projets = profile.projets
-  
-  template = get_template('generate.html')
-  context = {'noms':noms, 'email':email, 'contact':contact,'exp_pro':exp_pro, "adresse":adresse, 'tech_skills':tech_skills, 'soft_skills':soft_skills, 'objectif':objectif, 'education':education, 'projets':projets, 'langue':langue}
-  html = template.render(context)         #ici on récupere les informations qu'on souhaite afficher et on les transmet dans le template avec "context"
-  options = {
-    'page-size': 'Letter',
-    'encoding': 'UTF-8',
-    "enable-local-file-access": ''
-  }
-  config =pdfkit.configuration(wkhtmltopdf= r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe')   #toujours renseigner le chemin d'acces a wkhtmltopdf
-  pdf = pdfkit.from_string(html, False ,options,configuration=config)                              #instruction pour configurer le template 
-  reponse = HttpResponse(pdf, content_type='application/pdf')
-  reponse["Content-Disposition"] = 'attachement'
-  return reponse
+@login_required(login_url='login')
+def generer_cv(request, cv_id): 
+  cv = Profile.objects.get(id=cv_id, auteur=request.user)  
+  print(cv)
+  template = get_template('pdf_template.html')
+  html_string = template.render({'cv':cv})
+
+  CHEMIN_CV = r"C:\Users\MEN ELECTRONICS\OneDrive\Documents\CV"
+  if not os.path.exists(CHEMIN_CV):
+    os.makedirs(CHEMIN_CV)
+
+  filename = f'CV - {cv.noms}.pdf'
+  filepath = os.path.join(CHEMIN_CV, filename)
+
+  HTML(string=html_string).write_pdf(filepath) 
+
+    # Générer le PDF et l'envoyer dans le dossier indiqué dans le chemin d'accès
+  return FileResponse(open(filepath, 'rb'), as_attachment=True, filename=filename)
 
 
-def download(request):
-  profile = Profile.objects.all()
-  return render(request, 'download.html', {'profile':profile})
+def delete_cv(request, cv_id):
+   cv = Profile.objects.get(id=cv_id)
+   cv.delete()
+   return redirect('Accueil')
+
 
 
 def infos(request):
-  return render(request, 'infos.html')
+  return render(request, 'CV/infos.html')
+

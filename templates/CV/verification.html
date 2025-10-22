@@ -1,0 +1,93 @@
+{% extends "base.html" %}{% block title %}Vérification{% endblock title %}
+{%block content %}
+  <div class="container">
+    <h2 class="mb-4 text-center mt-2">Vérifie ton CV avant confirmation</h2>
+
+    <div class="cv-section">
+      <h2>Informations personnelles</h2>
+      <span class="label">Nom :</span>
+      <span class="value">{{ profile_data.noms }}</span><br>
+      <span class="label">Email :</span>
+      <span class="value">{{ profile_data.email }}</span><br>
+      <span class="label">Téléphone :</span>
+      <span class="value">{{ profile_data.contact }}</span><br>
+      <span class="label">LinkedIn :</span>
+      <span class="value">{{ profile_data.linkedin }}</span><br>
+      <span class="label">Github :</span>
+      <span class="value">{{ profile_data.github }}</span><br>
+      <span class="label">Résume :</span>
+      <span class="value">{{ profile_data.objectif }}</span><br>
+    </div> <hr>
+
+    <div class="cv-section">
+      <h2>Formation</h2>
+      <span class="label">Ecole :</span>
+      <div class="value">{{ profile_data.ecole_1 }}</div>
+      <span class="label">Diplome :</span>
+      <span class="value">{{ profile_data.diplome_1 }}</span><br>
+      <span class="label">Année debut :</span>
+      <span class="value">{{ profile_data.date_debut_1 }}</span><br>
+      <span class="label">Année fin :</span>
+      <span class="value">{{ profile_data.date_fin_1 }}</span><br>
+    </div>
+
+    <div class="cv-section">
+      <span class="label">Ecole 2 :</span>
+      <div class="value">{{ profile_data.ecole_2 }}</div>
+      <span class="label">Diplome :</span>
+      <span class="value">{{ profile_data.diplome_2 }}</span><br>
+      <span class="label">Année debut :</span>
+      <span class="value">{{ profile_data.date_debut_2 }}</span><br>
+      <span class="label">Année fin :</span>
+      <span class="value">{{ profile_data.date_fin_2 }}</span><br>
+    </div> <hr>
+
+    <div class="cv-section">
+      <h2>Compétences techniques</h2>
+      <span class="label">Langage utilisés :</span>
+      <div class="value">{{ profile_data.langage_pro }}</div><br>
+      <span class="label"> Frameworks:</span>
+      <span class="value">{{ profile_data.frameworks }}</span><br>
+      <span class="label"> SGBD :</span>
+      <span class="value">{{ profile_data.base.donnees }}</span><br>
+      <span class="label"> Soft Skills:</span>
+      <span class="value">{{ profile_data.soft_skills }}</span><br>
+    </div> <hr>
+
+    <div class="cv-section">
+      <h2>Expérience professionnelle</h2>
+      <span class="label">Poste :</span>
+      <span class="value">{{ profile_data.poste_1 }}</span><br>
+      <span class="label">Entreprise :</span>
+      <span class="value">{{ profile_data.entreprise_1 }}</span><br>
+      <span class="label">Date de debut :</span>
+      <span class="value">{{ profile_data.date_debut_poste_1 }}</span><br>
+      <span class="label">Date de fin :</span>
+      <span class="value">{{ profile_data.date_fin_poste_1 }}</span>
+    </div>
+
+    <div class="cv-section">
+      <span class="label">Projet :</span>
+      <span class="value">{{ profile_data.projet_1 }}</span><br>
+      <span class="label">Lien :</span>
+      <span class="value">{{ profile_data.lien_1 }}</span><br>
+      <span class="label">Description :</span>
+      <span class="value">{{ profile_data.description_1 | linebreaks }}</span>
+    </div>
+
+    <form method="post" action="{% url 'verification' %}">
+      {% csrf_token %}
+      <div class="text-center mt-4">
+        <button type="submit" class="btn btn-success btn-lg">
+          Confirmer mes informations
+        </button>
+      </div>
+    </form>
+
+    <div class="text-center mt-3">
+      
+    </div>
+  </div>
+
+
+{% endblock content %}

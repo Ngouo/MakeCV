@@ -19,13 +19,13 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="{%static './style.css'%}" />
+    
   </head>
-  <body style="background-color: beige">
-    <nav class="navbar navbar-expand-lg navbar-light bg-warning">
+  <body style="background-color: #F2F6F7;">
+    <nav class="navbar navbar-expand-lg ">
       <a
-        style="font-weight: bold; font-size: 25px"
-        class="navbar-brand"
-        href="#"
+        class="navbar-brand mr-5"
+        href=""
         >MakeCV</a
       >
       <button
@@ -37,26 +37,41 @@
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
-        <span class="navbar-toggler-icon"></span>
+        <i class="fa fa-sort-desc" aria-hidden="true" style="color: white;"></i>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
+      <div class="collapse navbar-collapse " id="navbarNav" >
+        <ul class="navbar-nav ms-5" style="font-weight: bold;">
+           {% if user.is_authenticated %} 
+          
+            <li class="nav-item active">
+              <a class="nav-link" class="nav-link text-white" href="{%url 'logout'%}">
+              <i class="fa fa-sign-out" aria-hidden="true" width="5" height="5"></i>
+              Logout  </a
+            >
+
+            
+
+          {% else %}
+             <li class="nav-item active">
+             <a class="nav-link" class="nav-link text-white" href="{%url 'auth'%}" >
+            Login  </a
+          >
+          </li> 
+           <li class="nav-item active">
+             <a class="nav-link" class="nav-link text-white" href="{%url 'landing'%}">
+            Acceuil  </a
+          >
+          </li>  
+          {% endif %}
           <li class="nav-item active">
-            <a class="nav-link" href="form"
-              >Accueil <span class="sr-only">(current)</span></a
+            <a class="nav-link" href="infos"
+              >|  Infos générales <span class="sr-only">(current)</span></a
             >
           </li>
         </ul>
       </div>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item active">
-            <a class="nav-link" href="infos" style="margin-right: 800px"
-              >Infos générales <span class="sr-only">(current)</span></a
-            >
-          </li>
-        </ul>
-      </div>
+
+
     </nav>
 
     <div class="container">

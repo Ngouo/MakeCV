@@ -1,0 +1,55 @@
+{% extends "base2.html" %} 
+{% load static %}
+{% block content %}
+
+<h1>Voici les modèles que nous proposons</h1>
+
+<div class="container">
+    <div class="row mx-auto">
+        <div class="col-md-3">
+            <img class="modele pr-5 mb-2" src="{% static './téléchargement.jpg' %}" alt="">
+            <center><p class="mx-auto">Modèle 1</p></center>
+        </div>
+
+        <div class="col-md-3">
+            <img class="modele pr-5 mb-2" src="{% static './modele_2.jpg' %}" alt="">
+            <center><p class="mx-auto">Modèle 2</p></center>
+        </div>
+
+        <div class="col-md-3 ">
+            <img class="modele pr-5 mb-2" src="{% static './modele_3.jpg' %}" alt="">
+            <center><p class="mx-auto">Modèle 3</p></center>
+        </div>
+
+        <div class="col-md-3">
+            <img class="modele pr-5 mb-2" src="{% static './modele_1.jpg' %}" alt="">
+            <center><p class="mx-auto">Modèle 4</p></center>
+        </div>
+    </div>
+</div>
+
+<style>
+
+    body{
+        background-color: #F2F6F7;
+    }
+    .row .col-md-3 p{
+            color: #0A4174;
+            font-weight: bold;
+        }
+
+    @media (max-width: 798px) {
+        .row .col-md-3 p{
+            margin: 15px auto 0 -60px;
+            font-weight: bold;
+            border-bottom: solid black 1px;
+            color: #0A4174;
+        }
+    }
+</style>
+
+
+
+
+
+{% endblock content %}

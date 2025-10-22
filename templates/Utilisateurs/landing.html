@@ -1,0 +1,111 @@
+{% extends "base2.html" %}
+{% block content %}
+ {%load static%}
+
+
+<div class="first_part">
+     <div class="texte">
+        Créez votre CV professionnel en quelques minutes. <br>
+        Mettez toutes les chances de votre côté avec un CV clair, élégant et adapté à votre profil
+        <a class="btn btn-outline-primary" href="{% url 'modeles' %}">Consulter quelques modèles</a>
+    </div>
+</div>
+
+<div class="second_part">
+    <div class="container">
+        <center><h2>Vos possibilités</h2></center>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card shadow">
+                    <h5>Formulaire intelligent</h5>
+                    <div class="card-body">Remplissez étape par étape : infos perso, expériences, compétences, etc.</div>
+                    
+                </div>
+            </div>
+
+             <div class="col-md-4">
+                <div class="card shadow">
+                    <h5>Apercu en direct</h5>
+                    
+                    <div class="card-body"><p>Visualisez votre CV pendant que vous le construisez</p></div>
+                    
+                </div>
+            </div>
+
+             <div class="col-md-4">
+                <div class="card shadow">
+                    <h5>Modèles personnalisables</h5>
+                    
+                    <div class="card-body"><p>Changez les couleurs, polices, et mise en page en un clic</p></div>
+                    
+                </div>
+            </div>
+
+             <div class="col-md-4">
+                <div class="card shadow">
+                    <h5>Multi-langue</h5>
+                    
+                    <div class="card-body"><p>Créez votre CV en français, anglais, espagnol et plus</p></div>
+                    
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card shadow">
+                    <h5>Sauvegarde automatique</h5>
+                    
+                    <div class="card-body"><p>Reprenez là où vous vous êtes arrêté, sans rien perdre</p></div>
+                    
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card shadow">
+                    <h5>Génération PDF instantanée</h5>
+                    
+                    <div class="card-body"><p>Téléchargez votre CV en haute résolution, prêt à l’emploi</p></div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>    
+</div>
+
+<div class="third_part">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="img-container mx-auto">
+                    <img
+                        class="img-thumbnail d-flex"
+                    src="{% static './téléchargement.jpg' %}" alt="">
+                </div>
+            </div>
+            <div class="col-md-5 ml-5 pt-4">
+                <div class="card shadow mx-auto">
+                    <h3 class="m-auto pt-3">Vos Avantages : </h3>
+                    <hr>
+                    <ol class="pl-5">
+                        <li>-  Designs modernes et personnalisables </li> <hr>
+                        <li>-  Rapide et intuitif</li><hr>
+                        <li>Export PDF haute qualité</li><hr>
+                        <li>- Sécurité et confidentialité</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="fourth_part">
+
+</div>
+
+
+{% endblock content %}
+
+
+
+
+
+

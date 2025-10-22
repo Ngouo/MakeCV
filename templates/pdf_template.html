@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Times New Roman', Times, serif;
+      background-color: #fff;
+      padding: 5px;
+    }
+    h1, h2 {
+      font-weight: bold;
+      margin-top: 5px;
+    }
+    .section-title {
+      border-bottom: 2px solid rgb(8, 140, 248);
+      margin-bottom: 15px;
+      padding-bottom: 5px;
+      color: rgb(8, 140, 248);
+    }
+    .contact-info a {
+      text-decoration: none;
+      color: #000;
+    }
+    .cv-section {
+      margin-bottom: 30px;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    li{
+        margin-top: 5px;
+    }
+    .project-link {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1 class="text-center"> {{cv.noms}} </h1>
+    <p class="text-center contact-info">
+      <a href="https://linkedin.com/in/ngouo-gilbert-759059243">{{cv.linkedin}} </a> |
+      <a href="https://github.com/Ngouo">{{profile_data.github}} </a> |
+      <a href="mailto:ngouogilbert@gmail.com">{{profile_data.github}} </a> |
+      {{cv.contact}} 
+    </p>
+
+    <div class="cv-section">
+      <h2 class="section-title">RESUME</h2>
+      <p>{{cv.objectif}} </p>
+    </div>
+
+    <div class="cv-section">
+      <h2 class="section-title">EDUCATION</h2>
+      <ul>
+        <li><strong>{{cv.ecole_1}} </strong> – {{cv.diplome_1}} , {{cv.date_debut_1}}  - {{cv.date_fin_1}} </li>
+        <li><strong>{{cv.ecole_2}} </strong> – {{cv.diplome_2}} , {{cv.date_debut_2}}  - {{cv.date_fin_2}} </li>
+      </ul>
+    </div>
+
+    <div class="cv-section">
+      <h2 class="section-title">COMPETENCES TECHNIQUES</h2>
+      <p><strong>Langages :</strong> {{cv.langage_pro}} </p>
+      <p><strong>Frameworks :</strong> {{cv.frameworks}} </p>
+      <p><strong>SGBD :</strong> {{cv.base_donnees}} </p>
+      <p><strong>Soft Skills :</strong> {{cv.base_soft_skills}} </p>
+    </div>
+
+    <div class="cv-section">
+      <h2 class="section-title">EXPERIENCE PROFESSIONNELLE</h2>
+      <ul>
+        <li><strong>{{cv.poste_1}}  | {{cv.entreprise_1}} </strong> – {{cv.date_debut_poste_1}}  - {{profile_data.date_fin_poste_1}} 
+        </li>
+      </ul>
+    </div>
+
+    <div class="cv-section">
+      <h2 class="section-title">PROJETS</h2>
+      <ul>
+        <li><span class="project-link">{{cv.projet_1}} </span> – <a href="{{cv.lien_1}} ">{{cv.lien_1}} </a>
+          <p>{{cv.description_1}} </p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
