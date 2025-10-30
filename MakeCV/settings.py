@@ -28,7 +28,7 @@ TEMPLATES_DIRS = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = 'django-insecure-coq6b&p6q6zs)u=!&k(^q&1w48s=@=&m_ba=ut+w@i1e^c#v=q'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['makecv.onrender.com', 'localhost']
 
