@@ -12,9 +12,8 @@ def signup(request):
         form = SignUpForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('auth')
-        else:
-            form = SignUpForm()
+            print('succes')
+            return redirect('auth')            
     return render(request, 'Utilisateurs/signup.html', {'form': form})
 
 
