@@ -95,10 +95,10 @@ WSGI_APPLICATION = 'MakeCV.wsgi.application'
 DATABASES = {
    'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'makecv',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': '127.0.0.1',
+         'NAME': 'devgilbert_makecv',
+        'USER': '409032',
+        'PASSWORD': 'gilbert2002.',
+        'HOST': 'mysql-devgilbert.alwaysdata.net',
         'PORT': '3306',
 }
 }
